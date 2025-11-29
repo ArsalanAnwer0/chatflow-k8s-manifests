@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb          
+  namespace: chatflow
+  labels:
+    app: mongodb
+spec:
+  type: ClusterIP        # Internal only (not accessible from internet)
+  selector:
+    app: mongodb         # Routes traffic to pods with this label
+  ports:
+  - port: 27017          # Service listens on this port
+    targetPort: 27017    # Forwards to container's port 27017
+    protocol: TCP
+    name: mongodb

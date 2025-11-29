@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: chatflow
+  labels:
+    app: backend
+spec:
+  type: LoadBalancer      # External access (for now, will use Ingress later)
+  selector:
+    app: backend
+  ports:
+  - port: 5001            # External port
+    targetPort: 5000      # Container port
+    protocol: TCP
+    name: http
